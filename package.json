@@ -1,0 +1,31 @@
+{
+  "name": "verdaccio-static-token",
+  "version": "0.9.0",
+  "description": "Quick and dirty plugin for Verdaccio npm registry to use auth tokens, without run the token command",
+  "main": "index.js",
+  "scripts": {
+    "test": "standard && echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eomm/verdaccio-static-token.git"
+  },
+  "keywords": [
+    "verdaccio",
+    "auth",
+    "plugin",
+    "verdaccio-plugin",
+    "token"
+  ],
+  "author": "Manuel Spigolon <behemoth89@gmail.com> (https://github.com/Eomm)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Eomm/verdaccio-static-token/issues"
+  },
+  "homepage": "https://github.com/Eomm/verdaccio-static-token#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "standard": "^12.0.1",
+    "verdaccio": "^3.11.6"
+  }
+}
