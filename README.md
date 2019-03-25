@@ -2,14 +2,14 @@
 
 This plugin for Verdaccio npm registry let you to use custom authentication tokens with verdaccio.
 
-DISCALIMER: this is a **quick and dirty** plugin to archive my needs. You **MUST** understand how it
+_DISCALIMER:_ this is a **quick and dirty** plugin to archive my needs. You **MUST** understand how it
 works because it could be a potential security issue for your registry.
 The settings of this plugin are not encripted in the `verdaccio/config.yaml`, so the server must have an
 access policy.
 
 If you want/need encripted strings in config file send a PR or wait for Verdaccio 4.0.
 
-# Installation
+## Installation
 
 ```sh
 npm install verdaccio
@@ -17,7 +17,7 @@ npm install verdaccio-static-token
 ```
 
 
-## How it works
+### How it works
 
 This plugins is composed of two components:
 
@@ -25,7 +25,7 @@ This plugins is composed of two components:
 + authorization: it will approve the used tokens and any additional `user`s login, **eventually skipping** the next auth-plugin configured
 
 
-# Usage
+## Usage
 
 There are some type of usage:
 
@@ -36,7 +36,7 @@ There are some type of usage:
 | middleware+authorization | You can comine these two types giving the access only to a defined set of tokens, so users will continue to use others auth plugins configured
 
 
-## middleware-only
+### middleware-only
 
 ```yaml
 middlewares:
@@ -59,7 +59,7 @@ NB: if the user you have set require the 2FA, the authentication will fail. So i
 static application-user.
 
 
-## authorization-only
+### authorization-only
 
 ```yaml
 auth:
@@ -79,7 +79,7 @@ example the users `doo`, `foo` and `bar` can access **without a valid password**
 Of course use this feature with caution!
 
 
-## middleware+authorization
+### middleware+authorization
 
 ```yaml
 auth:
@@ -96,7 +96,7 @@ middlewares:
 Verdaccio registry only to a list of tokens.
 
 The tokens will not act as other users and the `static-token` auth plugin will authorize only the tokens,
-so all the others users must login in as usual.
+so all the others users must login as usual.
 
 NB: if the `static-token` auth plugin isn't the first of the list, the token will be rejected!
 As before, the `token` value must **long** and **random**!
@@ -116,7 +116,8 @@ npm config get userconfig
 echo '//localhost:4873/:_authToken="mySecureToken"' >> `npm config get userconfig`
 ```
 
-The pattern of the string appended is: `//<url of the registry>/:_authToken="<static-token>"`
+The pattern of the string appended is: `//<url of the registry>/:_authToken="<static-token>"`.
+You can find more info [here](https://blog.npmjs.org/post/118393368555/deploying-with-npm-private-modules).
 
 
 ## License
