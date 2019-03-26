@@ -29,8 +29,6 @@ module.exports = function (config, stuff) {
         .map((authHeader, i) => [authHeader, config[i]]))
 
       const verdaccioSecret = storageInstance.config.secret
-      // I can't use createCipheriv since Verdaccio 3.x use createDecipher
-      const cipher = crypto.createCipher('aes192', verdaccioSecret) // eslint-disable-line node/no-deprecated-api
 
       app.use(function (req, res, next) {
         if (req.headers && req.headers.authorization && accessTokens.has(req.headers.authorization)) {
@@ -43,6 +41,8 @@ module.exports = function (config, stuff) {
       })
 
       function buildAesAuthToken (user, password) {
+        // I can't use createCipheriv since Verdaccio 3.x use createDecipher
+        const cipher = crypto.createCipher('aes192', verdaccioSecret) // eslint-disable-line node/no-deprecated-api
         const part = cipher.update(Buffer.from(`${user}:${password}`, 'utf8'))
         const encripted = Buffer.concat([part, cipher.final()])
         return `Bearer ${encripted.toString('base64')}`
